@@ -48,6 +48,133 @@ namespace C2CApp.Classes
         }
 
         //implement methods
+        public void AddDevice()
+        {
+            //show allowed device types
+            Console.WriteLine("\nselect from the following types");
+            var q = from t in Assembly.GetExecutingAssembly().GetTypes()
+                    where t.IsClass && t.Namespace == DEVICENS
+                    where t.Name != "<>c"
+                    select t.Name;
+            q.ToList().ForEach(t => Console.WriteLine(t));
+
+            //iput device type, if invalid return to upper menu
+            Console.WriteLine("select: ");
+            string type = Console.ReadLine();
+            if (!q.Any(x => x == type))
+            {
+                Console.WriteLine("invalid type");
+                return;
+            }
+
+            //input name
+            Console.WriteLine("input the device name: ");
+            string name = null;
+            while (name == null || name == "")
+            {
+                name = Console.ReadLine();
+            }
+
+            //create device
+            Device newDevice = deviceRepo.Create(type, name);
+
+            //if created failed, return to upper menu
+            if (newDevice == null)
+            {
+                Console.WriteLine("Create {type} failed, please call Charles");
+                return;
+            }
+            //add or replace the old one
+            deviceRepo.Add(newDevice);
+        }
+
+        public void OperateDevice(Device device)
+        {
+            //generate manual command
+            Command manualCommand = CommandFactory
+                .CreateCommand(device.GetType().Name, "GetManual");
+
+            //if command not found, return upper menu
+            if (manualCommand == null)
+            {
+                Console.WriteLine("\nget manual error, check name convention");
+                return;
+            }
+            manualCommand.Receiver = device;
+            bool running = true;
+
+            //operate device or return to upper menu
+            do
+            {
+                //show options
+                Console.WriteLine("\nplease select from following options:\n");
+                involker.SetCommand(manualCommand);
+                involker.ExecuteCommand();
+                Console.WriteLine("your choice is:");
+                string choice = Console.ReadLine();
+
+                //if "Back", back to upper menu
+                if (choice == "Back")
+                {
+                    running = false;
+                    continue;
+                }
+                //create command
+                Command command = CommandFactory.CreateCommand(device.GetType().Name, choice);
+                //if invalid command, restart
+                if (command == null)
+                {
+                    Console.WriteLine("\ninvalid operation\n");
+                    continue;
+                }
+                command.Receiver = device;
+
+                //execute
+                involker.SetCommand(command);
+                involker.ExecuteCommand();
+
+            } while (running);
+        }
+
+        public void RemoveDevice()
+        {
+            //if no device, back to upper menu
+            if (!ShowDevices())
+            {
+                return;
+            }
+
+            //input device name
+            Console.WriteLine("input the device name: ");
+            string name = Console.ReadLine();
+
+            //if not found, back to upper menu
+            deviceRepo.Remove(name);
+
+        }
+
+        public void SelectDevice()
+        {
+            //if no device, back to upper menu
+            if (!ShowDevices())
+            {
+                return;
+            }
+
+            //input device name
+            Console.WriteLine("\ninput the device name: ");
+            string name = Console.ReadLine();
+
+            //get device, if not found, back to upper menu
+            Device device = deviceRepo.Get(name);
+            if (device == null)
+            {
+                Console.WriteLine("\ndevice {0} not found", name);
+                return;
+            }
+            OperateDevice(device);
+        }
+
         public bool ShowDevices()
         {
             //get devices name array
@@ -81,135 +208,6 @@ namespace C2CApp.Classes
                 Console.WriteLine(option);
             }
             Console.WriteLine("\nselect:");
-        }
-
-        public void SelectDevice()
-        {
-            //if no device, back to upper menu
-            if (!ShowDevices())
-            {
-                return;
-            }
-
-            //input device name
-            Console.WriteLine("\ninput the device name: ");
-            string name = Console.ReadLine();
-
-            //get device, if not found, back to upper menu
-            Device device = deviceRepo.Get(name);
-            if(device == null)
-            {
-                Console.WriteLine("\ndevice {0} not found", name);
-                return;
-            }
-            OperateDevice(device);
-        }
-
-        //add procedure
-        public void AddDevice()
-        {
-            //show allowed device types
-            Console.WriteLine("\nselect from the following types");
-            var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-                    where t.IsClass && t.Namespace == DEVICENS
-                    where t.Name != "<>c"
-                    select t.Name;
-            q.ToList().ForEach(t => Console.WriteLine(t));
-
-            //iput device type, if invalid return to upper menu
-            Console.WriteLine("select: ");
-            string type = Console.ReadLine();
-            if(!q.Any(x => x == type))
-            {
-                Console.WriteLine("invalid type");
-                return;
-            }
-
-            //input name
-            Console.WriteLine("input the device name: ");
-            string name = null;
-            while (name == null || name == "") 
-            {
-                name = Console.ReadLine();
-            }
-
-            //create device
-            Device newDevice = deviceRepo.Create(type, name);
-
-            //if created failed, return to upper menu
-            if(newDevice == null)
-            {
-                Console.WriteLine("Create {type} failed, please call Charles");
-                return;
-            }
-            //add or replace the old one
-            deviceRepo.Add(newDevice);
-        }
-
-        //remove procedure
-        public void RemoveDevice()
-        {
-            //if no device, back to upper menu
-            if (!ShowDevices())
-            {
-                return;
-            }
-
-            //input device name
-            Console.WriteLine("input the device name: ");
-            string name = Console.ReadLine();
-
-            //if not found, back to upper menu
-            deviceRepo.Remove(name);
-
-        }
-
-        public void OperateDevice(Device device)
-        {
-            //generate manual command
-            Command manualCommand = CommandFactory
-                .CreateCommand(device.GetType().Name, "GetManual");
-
-            //if command not found, return upper menu
-            if(manualCommand == null)
-            {
-                Console.WriteLine("\nget manual error, check name convention");
-                return;
-            }
-            manualCommand.Receiver = device;
-            bool running = true;
-
-            //operate device or return to upper menu
-            do
-            {
-                //show options
-                Console.WriteLine("\nplease select from following options:\n");
-                involker.SetCommand(manualCommand);
-                involker.ExecuteCommand();
-                Console.WriteLine("your choice is:");
-                string choice = Console.ReadLine();
-
-                //if "Back", back to upper menu
-                if(choice == "Back")
-                {
-                    running = false;
-                    continue;
-                }
-                //create command
-                Command command = CommandFactory.CreateCommand(device.GetType().Name, choice);
-                //if invalid command, restart
-                if(command == null)
-                {
-                    Console.WriteLine("\ninvalid operation\n");
-                    continue;
-                }
-                command.Receiver = device;
-
-                //execute
-                involker.SetCommand(command);
-                involker.ExecuteCommand();
-
-            } while (running);
         }
     }
 }

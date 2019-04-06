@@ -16,11 +16,11 @@ namespace C2CApp.Classes.Devices
         {
         }
 
-        //implement IDevice
+        //IDevice implementation
         public override IEnumerable<string> GetManual()
         {
             //get manual
-            Console.WriteLine("Get manual in old camera way");
+            Console.WriteLine("get manual in old camera way");
             //get methods
             //var methods = GetType().GetMethods(BindingFlags.Instance
             //| BindingFlags.Public
@@ -67,22 +67,22 @@ namespace C2CApp.Classes.Devices
         }
 
 
-        //methods from ICamera
+        //ICamera implementation
         public override void Snapshot()
         {
-            Console.WriteLine("Using the method in OldCamera");
+            Console.WriteLine("using the method in OldCamera");
             base.Snapshot();
         }
 
         public override void ZoomIn()
         {
-            Console.WriteLine("Using the method in OldCamera");
+            Console.WriteLine("using the method in OldCamera");
             base.ZoomIn();
         }
 
         public override void ZoomOut()
         {
-            Console.WriteLine("Using the method in OldCamera");
+            Console.WriteLine("using the method in OldCamera");
             base.ZoomOut();
         }
     }

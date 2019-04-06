@@ -21,6 +21,11 @@ namespace C2CApp.Classes.Commands.NewCameraCommands
             {
                 _device.Connect();
             }
+            //check status
+            if (!_device.CheckStatus())
+            {
+                _device.TurnOn();
+            }
 
             _device.Snapshot();
             _device.Snapshot();

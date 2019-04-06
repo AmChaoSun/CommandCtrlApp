@@ -14,6 +14,7 @@ namespace C2CApp.Classes.Devices
         {
         }
 
+        //IDevice implementation
         public override IEnumerable<string> GetManual()
         {
             //check connection first
@@ -31,17 +32,6 @@ namespace C2CApp.Classes.Devices
                 .Select(x => x.Name);
 
             return methods;
-        }
-
-        public void Launch()
-        {
-            //check connection first
-            if (!CheckConnection())
-            {
-                Connect();
-            }
-
-            Console.WriteLine("Launch launch");
         }
 
         public override void TurnOff()
@@ -87,6 +77,18 @@ namespace C2CApp.Classes.Devices
             {
                 Console.WriteLine("{0} has already turned on", Name);
             }
+        }
+
+        //IRocketlauncher implementation
+        public void Launch()
+        {
+            //check connection first
+            if (!CheckConnection())
+            {
+                Connect();
+            }
+
+            Console.WriteLine("launch launch");
         }
     }
 }

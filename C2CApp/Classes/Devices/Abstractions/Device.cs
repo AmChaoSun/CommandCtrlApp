@@ -27,13 +27,21 @@ namespace C2CApp.Classes.Devices.Abstractions
         }
 
         //implement Idevice
+        //abstract implementations
         public abstract IEnumerable<string> GetManual();
         public abstract void TurnOff();
         public abstract void TurnOn();
 
+
         public bool CheckConnection()
         {
             return channel.CheckConnection();
+        }
+
+        //check power on/off
+        public bool CheckStatus()
+        {
+            return status;
         }
 
         public void Connect()

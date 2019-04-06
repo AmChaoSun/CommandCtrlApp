@@ -57,7 +57,7 @@
     <Compile Include="Interfaces\IInvolker.cs" />
     <Compile Include="Classes\DeviceRepository.cs" />
     <Compile Include="Interfaces\IDeviceRepository.cs" />
-    <Compile Include="Classes\Channels\RocketLauncher.cs" />
+    <Compile Include="Classes\Channels\RocketLauncherCommChannel.cs" />
     <Compile Include="Classes\Commands\OldCameraCommands\Snapshot.cs" />
     <Compile Include="Classes\Commands\OldCameraCommands\ZoomIn.cs" />
     <Compile Include="Classes\Commands\OldCameraCommands\ZoomOut.cs" />

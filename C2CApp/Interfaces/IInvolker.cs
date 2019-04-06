@@ -5,7 +5,7 @@ namespace C2CApp.Interfaces
 {
     public interface IInvolker
     {
-        void SetCommand(Command command);
         void ExecuteCommand();
+        void SetCommand(Command command);
     }
 }

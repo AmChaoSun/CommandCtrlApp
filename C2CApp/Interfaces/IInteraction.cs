@@ -6,10 +6,10 @@ namespace C2CApp.Interfaces
 {
     public interface IInteraction
     {
-        void SelectDevice();
         void AddDevice();
-        void RemoveDevice();
         void OperateDevice(Device device);
+        void RemoveDevice();
+        void SelectDevice();
         bool ShowDevices();
         void ShowMenu();
     }

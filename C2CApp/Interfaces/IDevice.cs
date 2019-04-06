@@ -6,6 +6,8 @@ namespace C2CApp.Interfaces
     public interface IDevice
     {
         bool CheckConnection();
+        //check power on/off
+        bool CheckStatus();
         void Connect();
         void Disconnect();
         IEnumerable<string> GetManual();

@@ -21,10 +21,13 @@ namespace C2CApp.Classes.Commands.OldCameraCommands
             {
                 _device.Connect();
             }
+            //check status
+            if (!_device.CheckStatus())
+            {
+                return;
+            }
 
             _device.TurnOff();
-
-            _device.Disconnect();
         }
     }
 }

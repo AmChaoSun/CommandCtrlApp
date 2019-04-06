@@ -17,10 +17,11 @@ namespace C2CApp.Classes.Devices
         {
         }
 
+        //IDevice implementation
         public override IEnumerable<string> GetManual()
         {
             //get manual
-            Console.WriteLine("Get manual in new camera way");
+            Console.WriteLine("get manual in new camera way");
             var q = from t in Assembly.GetExecutingAssembly().GetTypes()
                     where t.IsClass && t.Namespace == COMMANDNS
                     where t.Name != "GetManual"
@@ -61,30 +62,30 @@ namespace C2CApp.Classes.Devices
             }
         }
 
-        //new methods in IBetterCamera
-        public void AmazingFunc()
-        {
-            Console.WriteLine("Using the method in NewCamera");
-            Console.WriteLine("{0} is doing some amazing things", Name);
-        }
-
-        //methods from ICamera
+        //ICamera Implementation
         public override void Snapshot()
         {
-            Console.WriteLine("Using the method in NewCamera");
+            Console.WriteLine("using the method in NewCamera");
             base.Snapshot();
         }
 
         public override void ZoomIn()
         {
-            Console.WriteLine("Using the method in NewCamera");
+            Console.WriteLine("using the method in NewCamera");
             base.ZoomIn();
         }
 
         public override void ZoomOut()
         {
-            Console.WriteLine("Using the method in NewCamera");
+            Console.WriteLine("using the method in NewCamera");
             base.ZoomOut();
+        }
+
+        //IBetterCamera implementation
+        public void AmazingFunc()
+        {
+            Console.WriteLine("using the method in NewCamera");
+            Console.WriteLine("{0} is doing some amazing things", Name);
         }
     }
 }
