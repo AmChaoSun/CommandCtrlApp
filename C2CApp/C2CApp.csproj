@@ -43,12 +43,37 @@
     <Compile Include="Classes\Devices\NewCamera.cs" />
     <Compile Include="Classes\Devices\RocketLauncher.cs" />
     <Compile Include="Classes\Commands\Command.cs" />
-    <Compile Include="Classes\Channels\CameraCommChannel.cs" />
+    <Compile Include="Classes\Channels\OldCameraCommChannel.cs" />
     <Compile Include="Classes\Channels\CommChannel.cs" />
     <Compile Include="Classes\CommandCtrlApp.cs" />
     <Compile Include="Classes\Devices\OldCamera.cs" />
     <Compile Include="Classes\Devices\Abstractions\Camera.cs" />
     <Compile Include="Classes\Devices\Abstractions\Device.cs" />
+    <Compile Include="Interfaces\ICommandCtrlApp.cs" />
+    <Compile Include="Interfaces\IInteraction.cs" />
+    <Compile Include="Classes\Channels\NewCameraCommChannel.cs" />
+    <Compile Include="Classes\DeviceFactory.cs" />
+    <Compile Include="Classes\Involker.cs" />
+    <Compile Include="Interfaces\IInvolker.cs" />
+    <Compile Include="Classes\DeviceRepository.cs" />
+    <Compile Include="Interfaces\IDeviceRepository.cs" />
+    <Compile Include="Classes\Channels\RocketLauncher.cs" />
+    <Compile Include="Classes\Commands\OldCameraCommands\Snapshot.cs" />
+    <Compile Include="Classes\Commands\OldCameraCommands\ZoomIn.cs" />
+    <Compile Include="Classes\Commands\OldCameraCommands\ZoomOut.cs" />
+    <Compile Include="Classes\Commands\OldCameraCommands\TurnOn.cs" />
+    <Compile Include="Classes\Commands\OldCameraCommands\TurnOff.cs" />
+    <Compile Include="Classes\Commands\OldCameraCommands\ThreeShoot.cs" />
+    <Compile Include="Classes\CommandFactory.cs" />
+    <Compile Include="Classes\Commands\OldCameraCommands\GetManual.cs" />
+    <Compile Include="Classes\Commands\NewCameraCommands\GetManual.cs" />
+    <Compile Include="Classes\Commands\NewCameraCommands\Snapshot.cs" />
+    <Compile Include="Classes\Commands\NewCameraCommands\ThreeShoot.cs" />
+    <Compile Include="Classes\Commands\NewCameraCommands\TurnOff.cs" />
+    <Compile Include="Classes\Commands\NewCameraCommands\TurnOn.cs" />
+    <Compile Include="Classes\Commands\NewCameraCommands\ZoomIn.cs" />
+    <Compile Include="Classes\Commands\NewCameraCommands\ZoomOut.cs" />
+    <Compile Include="Classes\Commands\NewCameraCommands\AmazingFunc.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
@@ -57,6 +82,8 @@
     <Folder Include="Classes\Commands\" />
     <Folder Include="Classes\Channels\" />
     <Folder Include="Classes\Devices\Abstractions\" />
+    <Folder Include="Classes\Commands\OldCameraCommands\" />
+    <Folder Include="Classes\Commands\NewCameraCommands\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

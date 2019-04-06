@@ -10,37 +10,26 @@ namespace C2CApp.Classes.Devices
 {
     public class NewCamera : Camera, IBetterCamera
     {
-        public NewCamera(string name, CameraCommChannel channel) : base(name, channel)
+        //const
+        private const string COMMANDNS = "C2CApp.Classes.Commands.NewCameraCommands";
+
+        public NewCamera(string name, NewCameraCommChannel channel) : base(name, channel)
         {
         }
 
         public override IEnumerable<string> GetManual()
         {
-            //check connection first
-            if (!CheckConnection())
-            {
-                Connect();
-            }
-
             //get manual
             Console.WriteLine("Get manual in new camera way");
-            var methods = GetType().GetMethods(BindingFlags.Instance
-                | BindingFlags.Public
-                | BindingFlags.DeclaredOnly)
-                .Where(x => !x.IsSpecialName && x.Name != "GetManual")
-                .Select(x => x.Name);
-
-            return methods;
+            var q = from t in Assembly.GetExecutingAssembly().GetTypes()
+                    where t.IsClass && t.Namespace == COMMANDNS
+                    where t.Name != "GetManual"
+                    select t.Name;
+            return q;
         }
 
         public override void TurnOff()
         {
-            //check connection first
-            if (!CheckConnection())
-            {
-                Connect();
-            }
-
             Console.WriteLine("turn off new camera");
             //if turned on, then turn off
             if (status)
@@ -59,12 +48,6 @@ namespace C2CApp.Classes.Devices
 
         public override void TurnOn()
         {
-            //check connection first
-            if (!CheckConnection())
-            {
-                Connect();
-            }
-
             Console.WriteLine("turn on new camera");
             //if turned off, then turn on
             if (!status)
@@ -81,12 +64,6 @@ namespace C2CApp.Classes.Devices
         //new methods in IBetterCamera
         public void AmazingFunc()
         {
-            //check connection first
-            if (!CheckConnection())
-            {
-                Connect();
-            }
-
             Console.WriteLine("Using the method in NewCamera");
             Console.WriteLine("{0} is doing some amazing things", Name);
         }
@@ -94,36 +71,18 @@ namespace C2CApp.Classes.Devices
         //methods from ICamera
         public override void Snapshot()
         {
-            //check connection first
-            if (!CheckConnection())
-            {
-                Connect();
-            }
-
             Console.WriteLine("Using the method in NewCamera");
             base.Snapshot();
         }
 
         public override void ZoomIn()
         {
-            //check connection first
-            if (!CheckConnection())
-            {
-                Connect();
-            }
-
             Console.WriteLine("Using the method in NewCamera");
             base.ZoomIn();
         }
 
         public override void ZoomOut()
         {
-            //check connection first
-            if (!CheckConnection())
-            {
-                Connect();
-            }
-
             Console.WriteLine("Using the method in NewCamera");
             base.ZoomOut();
         }

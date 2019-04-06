@@ -6,14 +6,8 @@ namespace C2CApp.Classes.Commands
 {
     public abstract class Command: ICommand
     {
-        //params
-        private Device receiver;
-
-        //constructor
-        public Command(Device receiver)
-        {
-            this.receiver = receiver;
-        }
+        //property
+        public abstract Device Receiver { get; set; }
 
         public abstract void Execute();
     }

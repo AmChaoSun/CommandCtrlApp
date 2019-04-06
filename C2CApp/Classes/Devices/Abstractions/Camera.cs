@@ -6,7 +6,7 @@ namespace C2CApp.Classes.Devices.Abstractions
 {
     public abstract class Camera : Device, ICamera
     {
-        protected Camera(string name, CameraCommChannel channel) : base(name, channel)
+        protected Camera(string name, CommChannel channel) : base(name, channel)
         {
         }
 
