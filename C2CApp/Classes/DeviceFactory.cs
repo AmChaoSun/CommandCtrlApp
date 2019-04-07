@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using C2CApp.Classes.Channels;
 using C2CApp.Classes.Devices.Abstractions;
@@ -32,6 +34,15 @@ namespace C2CApp.Classes
             Object[] args = { name, channel };
             return (Device)Assembly.Load(ASSEMBLY).CreateInstance(instanceName,
                 false, (BindingFlags)0, null, args, null, null);
+        }
+
+        public static IEnumerable<string> GetAvailableTypes()
+        {
+            var types = from t in Assembly.GetExecutingAssembly().GetTypes()
+                    where t.IsClass && t.Namespace == DEVICENS
+                    where t.Name != "<>c"
+                    select t.Name;
+            return types;
         }
     }
 }

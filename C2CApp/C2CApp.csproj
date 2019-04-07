@@ -65,8 +65,6 @@
     <Compile Include="Classes\Commands\OldCameraCommands\TurnOff.cs" />
     <Compile Include="Classes\Commands\OldCameraCommands\ThreeShoot.cs" />
     <Compile Include="Classes\CommandFactory.cs" />
-    <Compile Include="Classes\Commands\OldCameraCommands\GetManual.cs" />
-    <Compile Include="Classes\Commands\NewCameraCommands\GetManual.cs" />
     <Compile Include="Classes\Commands\NewCameraCommands\Snapshot.cs" />
     <Compile Include="Classes\Commands\NewCameraCommands\ThreeShoot.cs" />
     <Compile Include="Classes\Commands\NewCameraCommands\TurnOff.cs" />

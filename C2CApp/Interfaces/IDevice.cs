@@ -10,7 +10,6 @@ namespace C2CApp.Interfaces
         bool CheckStatus();
         void Connect();
         void Disconnect();
-        IEnumerable<string> GetManual();
         void TurnOff();
         void TurnOn();
     }

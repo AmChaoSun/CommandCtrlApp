@@ -17,8 +17,6 @@ namespace C2CApp.Classes
             "remove device",
             "select device",
             "exit"};
-        //device name space
-        private const string DEVICENS = "C2CApp.Classes.Devices";
 
         //static
         private static CommandCtrlApp instance = null;
@@ -52,16 +50,17 @@ namespace C2CApp.Classes
         {
             //show allowed device types
             Console.WriteLine("\nselect from the following types");
-            var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-                    where t.IsClass && t.Namespace == DEVICENS
-                    where t.Name != "<>c"
-                    select t.Name;
-            q.ToList().ForEach(t => Console.WriteLine(t));
+            //get
+            var types = DeviceFactory.GetAvailableTypes();
+            //show
+            types.ToList().ForEach(t => Console.WriteLine(t));
 
             //iput device type, if invalid return to upper menu
             Console.WriteLine("select: ");
             string type = Console.ReadLine();
-            if (!q.Any(x => x == type))
+
+            //invalid type
+            if (!types.Any(x => x == type))
             {
                 Console.WriteLine("invalid type");
                 return;
@@ -70,6 +69,7 @@ namespace C2CApp.Classes
             //input name
             Console.WriteLine("input the device name: ");
             string name = null;
+            //invalid username
             while (name == null || name == "")
             {
                 name = Console.ReadLine();
@@ -90,17 +90,20 @@ namespace C2CApp.Classes
 
         public void OperateDevice(Device device)
         {
-            //generate manual command
-            Command manualCommand = CommandFactory
-                .CreateCommand(device.GetType().Name, "GetManual");
+            ////generate manual command
+            //Command manualCommand = CommandFactory
+            //    .CreateCommand(device.GetType().Name, "GetManual");
 
-            //if command not found, return upper menu
-            if (manualCommand == null)
-            {
-                Console.WriteLine("\nget manual error, check name convention");
-                return;
-            }
-            manualCommand.Receiver = device;
+            ////if command not found, return upper menu
+            //if (manualCommand == null)
+            //{
+            //    Console.WriteLine("\nget manual error, check name convention");
+            //    return;
+            //}
+            //manualCommand.Receiver = device;
+            var commands = CommandFactory
+                .GetCommands(device.GetType().Name).ToList();
+            commands.Add("Back");
             bool running = true;
 
             //operate device or return to upper menu
@@ -108,8 +111,10 @@ namespace C2CApp.Classes
             {
                 //show options
                 Console.WriteLine("\nplease select from following options:\n");
-                involker.SetCommand(manualCommand);
-                involker.ExecuteCommand();
+                //involker.SetCommand(manualCommand);
+                //involker.ExecuteCommand();
+                //show commands
+                commands.ForEach(c => Console.WriteLine(c));
                 Console.WriteLine("your choice is:");
                 string choice = Console.ReadLine();
 

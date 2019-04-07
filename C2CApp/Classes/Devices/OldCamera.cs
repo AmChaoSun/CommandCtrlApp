@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using C2CApp.Classes.Channels;
 using C2CApp.Classes.Devices.Abstractions;
 
@@ -17,23 +18,24 @@ namespace C2CApp.Classes.Devices
         }
 
         //IDevice implementation
-        public override IEnumerable<string> GetManual()
-        {
-            //get manual
-            Console.WriteLine("get manual in old camera way");
-            //get methods
-            //var methods = GetType().GetMethods(BindingFlags.Instance
-            //| BindingFlags.Public
-            //| BindingFlags.DeclaredOnly)
-            //.Where(x => !x.IsSpecialName && x.Name != "GetManual")
-            //.Select(x => x.Name);
 
-            var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-                    where t.IsClass && t.Namespace == COMMANDNS
-                    where t.Name != "GetManual"
-                    select t.Name;
-            return q;
-        }
+        //public override IEnumerable<string> GetManual()
+        //{
+        //    //get manual
+        //    Console.WriteLine("get manual in old camera way");
+        //    //get methods
+        //    //var methods = GetType().GetMethods(BindingFlags.Instance
+        //    //| BindingFlags.Public
+        //    //| BindingFlags.DeclaredOnly)
+        //    //.Where(x => !x.IsSpecialName && x.Name != "GetManual")
+        //    //.Select(x => x.Name);
+
+        //    var q = from t in Assembly.GetExecutingAssembly().GetTypes()
+        //            where t.IsClass && t.Namespace == COMMANDNS
+        //            where t.Name != "GetManual"
+        //            select t.Name;
+        //    return q;
+        //}
 
         public override void TurnOff()
         {
@@ -57,6 +59,8 @@ namespace C2CApp.Classes.Devices
             //if turned off, then turn on
             if (!status)
             {
+                //assume turn on needs 3s
+                Thread.Sleep(3000);
                 status = true;
                 Console.WriteLine("{0} turned on", Name);
             }

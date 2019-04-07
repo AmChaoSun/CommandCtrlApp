@@ -15,25 +15,6 @@ namespace C2CApp.Classes.Devices
         }
 
         //IDevice implementation
-        public override IEnumerable<string> GetManual()
-        {
-            //check connection first
-            if (!CheckConnection())
-            {
-                Connect();
-            }
-
-            //get manual
-            Console.WriteLine("Get manual in Rocket Laucher way");
-            var methods = GetType().GetMethods(BindingFlags.Instance
-                | BindingFlags.Public
-                | BindingFlags.DeclaredOnly)
-                .Where(x => !x.IsSpecialName && x.Name != "GetManual")
-                .Select(x => x.Name);
-
-            return methods;
-        }
-
         public override void TurnOff()
         {
             //check connection first

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using C2CApp.Classes.Channels;
 using C2CApp.Classes.Devices.Abstractions;
 using C2CApp.Interfaces;
@@ -18,17 +19,6 @@ namespace C2CApp.Classes.Devices
         }
 
         //IDevice implementation
-        public override IEnumerable<string> GetManual()
-        {
-            //get manual
-            Console.WriteLine("get manual in new camera way");
-            var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-                    where t.IsClass && t.Namespace == COMMANDNS
-                    where t.Name != "GetManual"
-                    select t.Name;
-            return q;
-        }
-
         public override void TurnOff()
         {
             Console.WriteLine("turn off new camera");
@@ -53,6 +43,8 @@ namespace C2CApp.Classes.Devices
             //if turned off, then turn on
             if (!status)
             {
+                //assume turn on needs 2s
+                Thread.Sleep(2000);
                 status = true;
                 Console.WriteLine("{0} turned on", Name);
             }
