@@ -50,6 +50,11 @@ namespace C2CApp.Classes
             return devices.Values;
         }
 
+        public IEnumerable<string> GetAvailableTypes()
+        {
+            return DeviceFactory.GetAvailableTypes();
+        }
+
         public void Remove(string name)
         {
             if (devices.ContainsKey(name))

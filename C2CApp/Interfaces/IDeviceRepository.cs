@@ -10,6 +10,7 @@ namespace C2CApp.Interfaces
         Device Create(string type, string name);
         Device Get(string name);
         IEnumerable<Device> GetAll();
+        IEnumerable<string> GetAvailableTypes();
         void Remove(string name);
     }
 }

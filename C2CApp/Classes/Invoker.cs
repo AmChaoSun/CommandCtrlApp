@@ -4,7 +4,7 @@ using C2CApp.Interfaces;
 
 namespace C2CApp.Classes
 {
-    public class Involker : IInvolker
+    public class Invoker : IInvoker
     {
         private Command command;
 

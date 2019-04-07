@@ -53,8 +53,8 @@
     <Compile Include="Interfaces\IInteraction.cs" />
     <Compile Include="Classes\Channels\NewCameraCommChannel.cs" />
     <Compile Include="Classes\DeviceFactory.cs" />
-    <Compile Include="Classes\Involker.cs" />
-    <Compile Include="Interfaces\IInvolker.cs" />
+    <Compile Include="Classes\Invoker.cs" />
+    <Compile Include="Interfaces\IInvoker.cs" />
     <Compile Include="Classes\DeviceRepository.cs" />
     <Compile Include="Interfaces\IDeviceRepository.cs" />
     <Compile Include="Classes\Channels\RocketLauncherCommChannel.cs" />

@@ -10,9 +10,9 @@ namespace C2CApp.Classes
 {
     public static class DeviceFactory
     {
-        const string ASSEMBLY = "C2CApp";
-        const string DEVICENS = "C2CApp.Classes.Devices";
-        const string CHANNELNS = "C2CApp.Classes.Channels";
+        private const string ASSEMBLY = "C2CApp";
+        private const string DEVICENS = "C2CApp.Classes.Devices";
+        private const string CHANNELNS = "C2CApp.Classes.Channels";
 
         public static Device CreateDevice(string type, string name)
         {

@@ -3,7 +3,7 @@ using C2CApp.Classes.Commands;
 
 namespace C2CApp.Interfaces
 {
-    public interface IInvolker
+    public interface IInvoker
     {
         void ExecuteCommand();
         void SetCommand(Command command);

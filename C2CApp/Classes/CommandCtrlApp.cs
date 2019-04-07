@@ -21,18 +21,17 @@ namespace C2CApp.Classes
         //static
         private static CommandCtrlApp instance = null;
 
-        private Involker involker;
         private readonly DeviceRepository deviceRepo;
-
+        private readonly Invoker invoker;
 
         //constructors
         private CommandCtrlApp()
         {
-            involker = new Involker();
+            invoker = new Invoker();
             deviceRepo = new DeviceRepository();
         }
 
-        //static method(singleton)
+        //static Property(singleton)
         public static CommandCtrlApp Instance
         {
             get
@@ -51,7 +50,7 @@ namespace C2CApp.Classes
             //show allowed device types
             Console.WriteLine("\nselect from the following types");
             //get
-            var types = DeviceFactory.GetAvailableTypes();
+            var types = deviceRepo.GetAvailableTypes();
             //show
             types.ToList().ForEach(t => Console.WriteLine(t));
 
@@ -90,19 +89,10 @@ namespace C2CApp.Classes
 
         public void OperateDevice(Device device)
         {
-            ////generate manual command
-            //Command manualCommand = CommandFactory
-            //    .CreateCommand(device.GetType().Name, "GetManual");
-
-            ////if command not found, return upper menu
-            //if (manualCommand == null)
-            //{
-            //    Console.WriteLine("\nget manual error, check name convention");
-            //    return;
-            //}
-            //manualCommand.Receiver = device;
+            //get commands
             var commands = CommandFactory
                 .GetCommands(device.GetType().Name).ToList();
+            //add "Back" for return upper menu
             commands.Add("Back");
             bool running = true;
 
@@ -111,8 +101,7 @@ namespace C2CApp.Classes
             {
                 //show options
                 Console.WriteLine("\nplease select from following options:\n");
-                //involker.SetCommand(manualCommand);
-                //involker.ExecuteCommand();
+
                 //show commands
                 commands.ForEach(c => Console.WriteLine(c));
                 Console.WriteLine("your choice is:");
@@ -135,9 +124,14 @@ namespace C2CApp.Classes
                 command.Receiver = device;
 
                 //execute
-                involker.SetCommand(command);
-                involker.ExecuteCommand();
-
+                invoker.SetCommand(command);
+                invoker.ExecuteCommand();
+                //if the command is TurnOff, back to upper menu
+                if(choice == "TurnOff")
+                {
+                    running = false;
+                    continue;
+                }
             } while (running);
         }
 

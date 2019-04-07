@@ -9,8 +9,8 @@ namespace C2CApp.Classes
 {
     public static class CommandFactory
     {
-        const string ASSEMBLY = "C2CApp";
-        const string COMMANDNS = "C2CApp.Classes.Commands";
+        private const string ASSEMBLY = "C2CApp";
+        private const string COMMANDNS = "C2CApp.Classes.Commands";
 
         public static Command CreateCommand(string type, string operation)
         {
