@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using C2CApp.Classes.Devices.Abstractions;
-using C2CApp.Interfaces;
+using C2CApp.Core.Classes.Devices.Abstractions;
+using C2CApp.Core.Interfaces;
 
-namespace C2CApp.Classes
+namespace C2CApp.Core.Classes
 {
     public class DeviceRepository: IDeviceRepository
     {

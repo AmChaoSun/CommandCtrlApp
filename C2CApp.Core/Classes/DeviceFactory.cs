@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using C2CApp.Classes.Channels;
-using C2CApp.Classes.Devices.Abstractions;
-using C2CApp.Interfaces;
+using C2CApp.Core.Classes.Channels;
+using C2CApp.Core.Classes.Devices.Abstractions;
+using C2CApp.Core.Interfaces;
 
-namespace C2CApp.Classes
+namespace C2CApp.Core.Classes
 {
     public static class DeviceFactory
     {
-        private const string ASSEMBLY = "C2CApp";
-        private const string DEVICENS = "C2CApp.Classes.Devices";
-        private const string CHANNELNS = "C2CApp.Classes.Channels";
+        private const string ASSEMBLY = "C2CApp.Core";
+        private const string DEVICENS = "C2CApp.Core.Classes.Devices";
+        private const string CHANNELNS = "C2CApp.Core.Classes.Channels";
 
         public static Device CreateDevice(string type, string name)
         {

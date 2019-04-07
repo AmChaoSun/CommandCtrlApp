@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C2CApp", "C2CApp\C2CApp.csproj", "{A186AD21-E640-461F-AEFC-1B4B7A281764}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C2CApp.Core", "C2CApp.Core\C2CApp.Core.csproj", "{04B08753-CD83-4AF0-9AE0-C7782EAC3ABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C2CApp.Core.Test", "C2CApp.Core.Test\C2CApp.Core.Test.csproj", "{C2D4A455-FC13-44E0-B063-86DD00DB9CFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +17,13 @@ Global
 		{A186AD21-E640-461F-AEFC-1B4B7A281764}.Debug|x86.Build.0 = Debug|x86
 		{A186AD21-E640-461F-AEFC-1B4B7A281764}.Release|x86.ActiveCfg = Release|x86
 		{A186AD21-E640-461F-AEFC-1B4B7A281764}.Release|x86.Build.0 = Release|x86
+		{04B08753-CD83-4AF0-9AE0-C7782EAC3ABA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{04B08753-CD83-4AF0-9AE0-C7782EAC3ABA}.Debug|x86.Build.0 = Debug|Any CPU
+		{04B08753-CD83-4AF0-9AE0-C7782EAC3ABA}.Release|x86.ActiveCfg = Release|Any CPU
+		{04B08753-CD83-4AF0-9AE0-C7782EAC3ABA}.Release|x86.Build.0 = Release|Any CPU
+		{C2D4A455-FC13-44E0-B063-86DD00DB9CFD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C2D4A455-FC13-44E0-B063-86DD00DB9CFD}.Debug|x86.Build.0 = Debug|Any CPU
+		{C2D4A455-FC13-44E0-B063-86DD00DB9CFD}.Release|x86.ActiveCfg = Release|Any CPU
+		{C2D4A455-FC13-44E0-B063-86DD00DB9CFD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

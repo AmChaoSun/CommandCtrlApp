@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using C2CApp.Classes;
-using C2CApp.Classes.Channels;
-using C2CApp.Classes.Devices;
-using C2CApp.Classes.Devices.Abstractions;
 
 namespace C2CApp
 {
@@ -35,8 +29,6 @@ namespace C2CApp
                         break;
                 }
             }
-
-
         }
     }
 }
